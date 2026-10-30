@@ -1,0 +1,14 @@
+{
+  "evaluations": [
+    {
+      "id": "10faa2c0",
+      "timestamp": "2026-09-27T15:07:36.161339",
+      "report_name": "Sample_Diabetic_Lipid_Panel.pdf",
+      "is_accurate": true,
+      "accuracy_rating": 5,
+      "feedback_notes": "Accurate viva test run",
+      "pipeline_latency_ms": 51.25,
+      "guardrail_score": 100.0
+    }
+  ]
+}

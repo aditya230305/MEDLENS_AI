@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Environment Variables
+.env
+
+# Logs and Temp
+*.log
+tmp/
+temp_uploads/
+
+# Node / Frontend
+frontend/node_modules/
+frontend/dist/
+*.local
+
+# Vector DB storage
+backend/data/chroma_db/

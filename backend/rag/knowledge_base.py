@@ -1,0 +1,199 @@
+"""
+Medical Reference Knowledge Base
+Curated, high-yield clinical reference corpus covering hematology, biochemistry,
+lipids, diabetes, renal, liver, thyroid, and pharmacotherapy.
+"""
+import json
+from pathlib import Path
+from typing import List, Dict, Any
+from backend.config import KNOWLEDGE_CORPUS_DIR
+
+KNOWLEDGE_BASE_FILE = KNOWLEDGE_CORPUS_DIR / "medical_reference_db.json"
+
+CURATED_MEDICAL_DATA: List[Dict[str, Any]] = [
+    # --- HEMATOLOGY ---
+    {
+        "id": "kb_hemo_01",
+        "title": "Hemoglobin (Hb)",
+        "category": "Hematology",
+        "keywords": ["hemoglobin", "haemoglobin", "hb", "anemia", "oxygen", "red blood cells"],
+        "normal_range": "Men: 13.5 - 17.5 g/dL; Women: 12.0 - 15.5 g/dL",
+        "clinical_definition": "Hemoglobin is an iron-rich protein in red blood cells that transports oxygen from the lungs to the tissues throughout the body.",
+        "causes_of_high": "Dehydration, smoking, chronic obstructive pulmonary disease (COPD), high altitude living, or polycythemia vera.",
+        "causes_of_low": "Iron deficiency anemia, vitamin B12/folate deficiency, active bleeding, chronic kidney disease, or bone marrow suppression.",
+        "patient_friendly_summary": "Hemoglobin tells you how well your red blood cells can carry oxygen. When it is low, you may feel fatigued, cold, weak, or short of breath (a condition called anemia). Iron-rich foods like leafy greens, beans, and lean meats help support healthy hemoglobin.",
+        "recommended_questions": ["What is causing my low or high hemoglobin?", "Do I need an iron or ferritin test?"]
+    },
+    {
+        "id": "kb_hemo_02",
+        "title": "White Blood Cell Count (WBC / TLC)",
+        "category": "Hematology",
+        "keywords": ["wbc", "white blood cell", "tlc", "leukocytes", "infection", "immunity"],
+        "normal_range": "4,000 - 11,000 cells/mcL (or /cumm)",
+        "clinical_definition": "White blood cells (leukocytes) are the frontline defensive cells of the immune system responsible for fighting infections, inflammation, and allergic reactions.",
+        "causes_of_high": "Bacterial or viral infections, systemic inflammation, physical stress, tissue damage, smoking, corticosteroid medication, or leukemia.",
+        "causes_of_low": "Viral infections, autoimmune disorders, bone marrow disorders, severe sepsis, or adverse reactions to immunosuppressive drugs.",
+        "patient_friendly_summary": "Your white blood cells are your body's immune defense soldiers. High levels usually mean your immune system is currently fighting off an infection or reacting to bodily inflammation. Low levels mean your body might have a harder time fighting off germs.",
+        "recommended_questions": ["Is my elevated WBC due to an active infection?", "Should we check a differential count?"]
+    },
+    {
+        "id": "kb_hemo_03",
+        "title": "Platelet Count",
+        "category": "Hematology",
+        "keywords": ["platelet", "thrombocyte", "clotting", "bleeding", "bruising"],
+        "normal_range": "150,000 - 450,000 /mcL (150 - 450 x10^3/uL)",
+        "clinical_definition": "Platelets (thrombocytes) are specialized cellular fragments essential for normal blood clotting and vascular wound healing.",
+        "causes_of_high": "Reactive thrombocytosis (due to infection, iron deficiency, or surgical recovery) or essential thrombocythemia.",
+        "causes_of_low": "Thrombocytopenia, immune-mediated destruction (ITP), dengue or viral infection, liver cirrhosis with splenomegaly, or medication-induced suppression.",
+        "patient_friendly_summary": "Platelets are tiny cell fragments that help your blood clot when you get a cut or injury. If platelets are too low, you may bruise easily, develop small red spots on the skin, or bleed longer than usual.",
+        "recommended_questions": ["Should I avoid blood thinners like aspirin?", "Do I need a repeat platelet count?"]
+    },
+    {
+        "id": "kb_hemo_04",
+        "title": "Mean Corpuscular Volume (MCV)",
+        "category": "Hematology",
+        "keywords": ["mcv", "mean corpuscular volume", "red cell size", "microcytic", "macrocytic"],
+        "normal_range": "80.0 - 100.0 fL",
+        "clinical_definition": "MCV measures the average physical size (volume) of individual red blood cells, classifying anemias into microcytic, normocytic, or macrocytic.",
+        "causes_of_high": "Macrocytosis: Vitamin B12 deficiency, folate deficiency, excessive alcohol consumption, thyroid disease, or liver disease.",
+        "causes_of_low": "Microcytosis: Iron deficiency anemia, thalassemia trait, or anemia of chronic inflammation.",
+        "patient_friendly_summary": "MCV indicates the average size of your red blood cells. Small cells (low MCV) typically suggest low iron or a genetic trait like thalassemia. Large cells (high MCV) often point toward a vitamin B12 or folic acid deficiency.",
+        "recommended_questions": ["Should my serum ferritin and vitamin B12 levels be tested?", "Could my symptoms be related to vitamin deficiency?"]
+    },
+
+    # --- DIABETES & GLYCEMIC MARKERS ---
+    {
+        "id": "kb_diab_01",
+        "title": "Glycated Hemoglobin (HbA1c)",
+        "category": "Diabetes Markers",
+        "keywords": ["hba1c", "a1c", "glycated hemoglobin", "diabetes", "blood sugar", "prediabetes"],
+        "normal_range": "Normal: < 5.7%; Prediabetes: 5.7% - 6.4%; Diabetes: >= 6.5%",
+        "clinical_definition": "HbA1c reflects the percentage of hemoglobin bound to glucose, providing an accurate weighted average of blood glucose concentrations over the past 2 to 3 months.",
+        "causes_of_high": "Uncontrolled diabetes mellitus, insulin resistance, metabolic syndrome, or impaired glucose tolerance.",
+        "causes_of_low": "Hemolytic anemia, recent acute blood loss, or chronic kidney disease with shortened erythrocyte lifespan.",
+        "patient_friendly_summary": "HbA1c is the gold-standard test for diabetes. Unlike a daily finger-prick test that only captures one moment in time, HbA1c shows your average blood sugar over the last 90 days. A value above 5.7% indicates prediabetes, while 6.5% or higher indicates diabetes.",
+        "recommended_questions": ["What dietary and lifestyle changes will help lower my HbA1c?", "Do I need anti-diabetic medication such as Metformin?"]
+    },
+    {
+        "id": "kb_diab_02",
+        "title": "Fasting Blood Glucose (FBS)",
+        "category": "Diabetes Markers",
+        "keywords": ["fasting blood sugar", "fbs", "glucose", "hyperglycemia", "hypoglycemia"],
+        "normal_range": "Normal: 70 - 99 mg/dL; Impaired Fasting Glucose: 100 - 125 mg/dL; Diabetes: >= 126 mg/dL",
+        "clinical_definition": "Measures circulating blood sugar level after an overnight fast of at least 8 to 12 hours.",
+        "causes_of_high": "Diabetes mellitus, stress response, pancreatitis, Cushing's syndrome, or steroid medications.",
+        "causes_of_low": "Excessive insulin dose, prolonged starvation, intense exercise without carbohydrate replacement, or insulinoma.",
+        "patient_friendly_summary": "Fasting blood sugar measures how your body manages glucose when you have not eaten for 8 hours. Healthy values stay below 100 mg/dL. Values between 100 and 125 mg/dL reflect prediabetes, and 126 mg/dL or higher on two separate tests indicates diabetes.",
+        "recommended_questions": ["Should I follow up with an oral glucose tolerance test or HbA1c?", "How can I adjust my evening meals?"]
+    },
+
+    # --- LIPID PROFILE ---
+    {
+        "id": "kb_lipid_01",
+        "title": "Lipid Profile & Cholesterol (Total, LDL, HDL, Triglycerides)",
+        "category": "Lipid Profile",
+        "keywords": ["cholesterol", "ldl", "hdl", "triglycerides", "lipid", "cardiac risk", "atherosclerosis"],
+        "normal_range": "Total Cholesterol: < 200 mg/dL; LDL: < 100 mg/dL; HDL: > 40 mg/dL (men) / > 50 mg/dL (women); Triglycerides: < 150 mg/dL",
+        "clinical_definition": "A comprehensive panel quantifying circulating lipoproteins that contribute to atherosclerosis, coronary artery disease, and stroke.",
+        "causes_of_high": "High-saturated-fat diet, physical inactivity, genetic hyperlipidemia, hypothyroidism, familial hypercholesterolemia, or diabetes.",
+        "causes_of_low": "Severe malnutrition, advanced liver disease, or hyperthyroidism.",
+        "patient_friendly_summary": "Your lipid profile assesses heart health. LDL is known as 'bad' cholesterol because it builds up plaque in your artery walls. HDL is 'good' cholesterol because it clears excess cholesterol out of your bloodstream. High triglycerides often stem from refined carbohydrates, sugary drinks, or alcohol.",
+        "recommended_questions": ["What is my overall 10-year cardiovascular risk score?", "Do I need a cholesterol-lowering medication like Atorvastatin?"]
+    },
+
+    # --- RENAL / KIDNEY FUNCTION ---
+    {
+        "id": "kb_renal_01",
+        "title": "Serum Creatinine & eGFR",
+        "category": "Kidney Function",
+        "keywords": ["creatinine", "egfr", "kidney", "renal", "filtration", "urea"],
+        "normal_range": "Creatinine: 0.7 - 1.3 mg/dL (men), 0.6 - 1.1 mg/dL (women); eGFR: >= 90 mL/min/1.73m2",
+        "clinical_definition": "Creatinine is a waste byproduct of muscle metabolism excreted entirely by the kidneys. Estimated Glomerular Filtration Rate (eGFR) quantifies renal filtration capacity.",
+        "causes_of_high": "Acute kidney injury, chronic kidney disease (CKD), dehydration, urinary tract obstruction, or intense weightlifting/high muscle mass.",
+        "causes_of_low": "Severe muscle wasting, low protein intake, pregnancy, or advanced age.",
+        "patient_friendly_summary": "Creatinine is a natural waste product from your muscles that your kidneys filter out into urine. If creatinine rises above normal, or your eGFR drops below 60, it indicates that your kidneys may not be filtering waste at full efficiency.",
+        "recommended_questions": ["Could my elevated creatinine be caused by mild dehydration?", "Should I avoid NSAID pain relievers (like ibuprofen) to protect my kidneys?"]
+    },
+    {
+        "id": "kb_renal_02",
+        "title": "Blood Urea Nitrogen (BUN)",
+        "category": "Kidney Function",
+        "keywords": ["bun", "blood urea nitrogen", "urea", "kidney function", "hydration"],
+        "normal_range": "7 - 20 mg/dL",
+        "clinical_definition": "BUN measures the amount of nitrogen in the blood that originates from the waste product urea, produced in the liver during protein digestion.",
+        "causes_of_high": "Dehydration, high-protein diet, kidney disease, congestive heart failure, or gastrointestinal bleeding.",
+        "causes_of_low": "Severe liver disease, low-protein diet, or overhydration.",
+        "patient_friendly_summary": "BUN evaluates how well your kidneys and liver are handling protein waste products. When BUN is elevated while creatinine is normal, dehydration is often the primary reason.",
+        "recommended_questions": ["Is my BUN elevation primarily due to dehydration?", "What is my BUN/creatinine ratio?"]
+    },
+
+    # --- LIVER FUNCTION (LFT) ---
+    {
+        "id": "kb_liver_01",
+        "title": "Liver Enzymes (ALT / SGPT & AST / SGOT)",
+        "category": "Liver Function",
+        "keywords": ["alt", "sgpt", "ast", "sgot", "liver enzymes", "hepatic", "fatty liver"],
+        "normal_range": "ALT: 7 - 56 U/L; AST: 10 - 40 U/L",
+        "clinical_definition": "ALT and AST are intracellular enzymes primarily located in hepatocytes. Cellular injury causes these enzymes to leak into systemic circulation.",
+        "causes_of_high": "Non-alcoholic fatty liver disease (NAFLD), alcohol consumption, viral hepatitis (A, B, C), hepatotoxic drugs (e.g. acetaminophen overdose), or gallstones.",
+        "causes_of_low": "Normal finding; low values carry no adverse clinical significance.",
+        "patient_friendly_summary": "ALT and AST are enzymes inside liver cells. When liver cells are irritated or stressed—such as from fatty deposits, certain medications, or alcohol—these enzymes leak into your blood. Mild elevations are very common with fatty liver disease.",
+        "recommended_questions": ["Could my elevated enzymes be due to fatty liver or medications?", "Should I undergo an abdominal ultrasound?"]
+    },
+    {
+        "id": "kb_liver_02",
+        "title": "Bilirubin (Total & Direct)",
+        "category": "Liver Function",
+        "keywords": ["bilirubin", "jaundice", "liver", "gallbladder", "hemolysis"],
+        "normal_range": "Total Bilirubin: 0.1 - 1.2 mg/dL; Direct: 0.0 - 0.3 mg/dL",
+        "clinical_definition": "A yellow-orange pigment formed from the physiological breakdown of hemoglobin in the spleen and processed by the liver.",
+        "causes_of_high": "Gilbert's syndrome, liver cirrhosis, acute hepatitis, biliary duct obstruction (gallstones), or hemolytic anemia.",
+        "causes_of_low": "Not clinically significant.",
+        "patient_friendly_summary": "Bilirubin is a natural pigment produced when old red blood cells are recycled. When the liver cannot process it or bile ducts are obstructed, bilirubin builds up and can cause yellowish eyes or skin (jaundice).",
+        "recommended_questions": ["Is this elevation isolated (like Gilbert's syndrome) or part of a liver issue?", "Do I need a liver ultrasound?"]
+    },
+
+    # --- THYROID PROFILE ---
+    {
+        "id": "kb_thyroid_01",
+        "title": "Thyroid Stimulating Hormone (TSH)",
+        "category": "Thyroid Profile",
+        "keywords": ["tsh", "thyroid", "hypothyroidism", "hyperthyroidism", "metabolism"],
+        "normal_range": "0.4 - 4.0 uIU/mL (or mIU/L)",
+        "clinical_definition": "TSH is released by the anterior pituitary gland to stimulate the thyroid gland into producing thyroxine (T4) and triiodothyronine (T3). It operates on a negative feedback loop.",
+        "causes_of_high": "Primary hypothyroidism (underactive thyroid, such as Hashimoto's thyroiditis), inadequate thyroid hormone replacement dose, or recovery from thyroiditis.",
+        "causes_of_low": "Hyperthyroidism (overactive thyroid, such as Graves' disease), excessive thyroid medication, or central pituitary insufficiency.",
+        "patient_friendly_summary": "TSH acts like an accelerator pedal from your brain to your thyroid gland. When your thyroid is sluggish (hypothyroidism), your brain presses harder on the pedal, causing TSH to rise. High TSH often leads to feeling sluggish, tired, sensitive to cold, or unexplained weight gain.",
+        "recommended_questions": ["Do my symptoms align with hypothyroidism or hyperthyroidism?", "Should we check Free T3, Free T4, and anti-TPO antibodies?"]
+    },
+
+    # --- PHARMACOTHERAPY & MEDICATIONS ---
+    {
+        "id": "kb_med_01",
+        "title": "Common Chronic Medications (Metformin, Statins, ACE Inhibitors)",
+        "category": "Pharmacotherapy",
+        "keywords": ["metformin", "atorvastatin", "lisinopril", "amlodipine", "levothyroxine", "medication"],
+        "normal_range": "N/A (Prescription therapeutic range)",
+        "clinical_definition": "Key maintenance medications frequently prescribed for chronic metabolic, cardiovascular, and endocrine conditions.",
+        "causes_of_high": "N/A",
+        "causes_of_low": "N/A",
+        "patient_friendly_summary": "Metformin helps your body respond better to its own insulin and lowers liver glucose production. Atorvastatin lowers LDL cholesterol and stabilizes blood vessel linings. Lisinopril and Amlodipine relax blood vessels to keep blood pressure safe. Never stop or modify prescription doses without speaking directly with your doctor.",
+        "recommended_questions": ["Are any of my abnormal lab values related to my current medications?", "Do I need kidney or liver monitoring while taking this medicine?"]
+    }
+]
+
+
+def initialize_knowledge_base():
+    """Writes the curated medical knowledge database to disk if not present."""
+    KNOWLEDGE_BASE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with open(KNOWLEDGE_BASE_FILE, "w", encoding="utf-8") as f:
+        json.dump(CURATED_MEDICAL_DATA, f, indent=2)
+    return len(CURATED_MEDICAL_DATA)
+
+
+def load_knowledge_base() -> List[Dict[str, Any]]:
+    """Loads the curated knowledge base from file or initializes defaults."""
+    if not KNOWLEDGE_BASE_FILE.exists():
+        initialize_knowledge_base()
+    with open(KNOWLEDGE_BASE_FILE, "r", encoding="utf-8") as f:
+        return json.load(f)
