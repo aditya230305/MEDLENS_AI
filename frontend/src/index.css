@@ -6,18 +6,293 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
+.medlens-dashboard {
+  --surface: #0e192a;
+  --surface-raised: #132137;
+  --surface-muted: #182841;
+  --line: #263750;
+  --text-primary: #edf4ff;
+  --text-secondary: #c1cde0;
+  --text-muted: #8fa1bb;
+  min-height: 100vh;
+  color: var(--text-primary);
+  background:
+    radial-gradient(ellipse at 12% -10%, rgb(33 88 135 / 18%), transparent 34rem),
+    radial-gradient(ellipse at 92% 18%, rgb(20 103 110 / 10%), transparent 30rem),
+    #080f1c;
+}
+
+.medlens-dashboard header {
+  background-color: rgb(10 18 31 / 90%);
+  border-color: rgb(45 62 86 / 75%);
+  box-shadow: 0 8px 30px rgb(0 0 0 / 18%);
+  backdrop-filter: blur(18px);
+}
+
+.medlens-dashboard main {
+  position: relative;
+}
+
+.medlens-dashboard .sample-report-highlights {
+  color: #f1f5f9;
+  background-color: #1b2b42;
+  border: 1px solid #354a63;
+}
+
+.medlens-dashboard .bg-white {
+  background-color: var(--surface);
+}
+
+.medlens-dashboard .bg-slate-50 {
+  background-color: var(--surface-raised);
+}
+
+.medlens-dashboard .bg-slate-100 {
+  background-color: var(--surface-muted);
+}
+
+.medlens-dashboard .bg-slate-200 {
+  background-color: #243650;
+}
+
+.medlens-dashboard .bg-slate-300 {
+  background-color: #354a68;
+}
+
+.medlens-dashboard .text-slate-900 {
+  color: var(--text-primary);
+}
+
+.medlens-dashboard .text-slate-800 {
+  color: #dce6f5;
+}
+
+.medlens-dashboard .text-slate-700 {
+  color: var(--text-secondary);
+}
+
+.medlens-dashboard .text-slate-600 {
+  color: #aab9ce;
+}
+
+.medlens-dashboard .text-slate-500 {
+  color: var(--text-muted);
+}
+
+.medlens-dashboard .text-slate-400 {
+  color: #7488a4;
+}
+
+.medlens-dashboard .text-slate-300 {
+  color: #586d89;
+}
+
+.medlens-dashboard .border-slate-100,
+.medlens-dashboard .border-slate-200,
+.medlens-dashboard .border-slate-300,
+.medlens-dashboard .divide-slate-100 > :not([hidden]) ~ :not([hidden]) {
+  border-color: var(--line);
+}
+
+.medlens-dashboard .bg-blue-50 {
+  background-color: #102640;
+}
+
+.medlens-dashboard .bg-blue-100 {
+  background-color: #17385c;
+}
+
+.medlens-dashboard .bg-blue-50\/50 {
+  background-color: rgb(16 38 64 / 55%);
+}
+
+.medlens-dashboard .text-blue-950,
+.medlens-dashboard .text-blue-900 {
+  color: #d8eaff;
+}
+
+.medlens-dashboard .text-blue-800,
+.medlens-dashboard .text-blue-700 {
+  color: #9dcaff;
+}
+
+.medlens-dashboard .border-blue-100,
+.medlens-dashboard .border-blue-200 {
+  border-color: #25476b;
+}
+
+.medlens-dashboard .bg-emerald-50 {
+  background-color: #102a29;
+}
+
+.medlens-dashboard .bg-emerald-100 {
+  background-color: #17413c;
+}
+
+.medlens-dashboard .bg-emerald-50\/50 {
+  background-color: rgb(16 42 41 / 62%);
+}
+
+.medlens-dashboard .text-emerald-950,
+.medlens-dashboard .text-emerald-900,
+.medlens-dashboard .text-emerald-800 {
+  color: #b7f2dc;
+}
+
+.medlens-dashboard .text-emerald-700 {
+  color: #88dbbd;
+}
+
+.medlens-dashboard .border-emerald-100,
+.medlens-dashboard .border-emerald-200,
+.medlens-dashboard .border-emerald-300 {
+  border-color: #24574e;
+}
+
+.medlens-dashboard .bg-rose-50 {
+  background-color: #321d2b;
+}
+
+.medlens-dashboard .bg-rose-100 {
+  background-color: #492333;
+}
+
+.medlens-dashboard .bg-rose-50\/20,
+.medlens-dashboard .bg-rose-50\/70 {
+  background-color: rgb(68 29 47 / 42%);
+}
+
+.medlens-dashboard .text-rose-900,
+.medlens-dashboard .text-rose-800 {
+  color: #ffc0ce;
+}
+
+.medlens-dashboard .text-rose-700 {
+  color: #f394aa;
+}
+
+.medlens-dashboard .border-rose-100,
+.medlens-dashboard .border-rose-200 {
+  border-color: #663043;
+}
+
+.medlens-dashboard .bg-amber-50 {
+  background-color: #302719;
+}
+
+.medlens-dashboard .bg-amber-100 {
+  background-color: #45351d;
+}
+
+.medlens-dashboard .text-amber-900,
+.medlens-dashboard .text-amber-800 {
+  color: #f6d69b;
+}
+
+.medlens-dashboard .border-amber-200,
+.medlens-dashboard .border-amber-300 {
+  border-color: #66502d;
+}
+
+.medlens-dashboard .bg-indigo-50 {
+  background-color: #211f3c;
+}
+
+.medlens-dashboard .bg-indigo-100 {
+  background-color: #302b58;
+}
+
+.medlens-dashboard .text-indigo-950,
+.medlens-dashboard .text-indigo-800 {
+  color: #d2ccff;
+}
+
+.medlens-dashboard .border-indigo-100 {
+  border-color: #46406f;
+}
+
+.medlens-dashboard .bg-sky-100 {
+  background-color: #153247;
+}
+
+.medlens-dashboard .text-sky-800 {
+  color: #9cddff;
+}
+
+.medlens-dashboard .border-sky-200 {
+  border-color: #28536e;
+}
+
+.medlens-dashboard .bg-cyan-50 {
+  background-color: #102d37;
+}
+
+.medlens-dashboard input,
+.medlens-dashboard select,
+.medlens-dashboard textarea {
+  color: var(--text-primary);
+  background-color: var(--surface-raised);
+  border-color: var(--line);
+}
+
+.medlens-dashboard input::placeholder,
+.medlens-dashboard textarea::placeholder {
+  color: #8193ad;
+}
+
+.medlens-dashboard option {
+  color: var(--text-primary);
+  background-color: var(--surface);
+}
+
+.medlens-dashboard .hover\:bg-slate-50:hover {
+  background-color: #17263b;
+}
+
+.medlens-dashboard .hover\:bg-slate-100:hover,
+.medlens-dashboard .hover\:bg-slate-200:hover {
+  background-color: #20324b;
+}
+
+.medlens-dashboard .hover\:text-slate-600:hover {
+  color: var(--text-primary);
+}
+
+.medlens-dashboard .shadow-sm,
+.medlens-dashboard .shadow-xs,
+.medlens-dashboard .shadow-2xs {
+  box-shadow: 0 10px 28px rgb(0 0 0 / 16%);
+}
+
+.medlens-dashboard .rounded-2xl,
+.medlens-dashboard .rounded-xl {
+  box-shadow: 0 1px 0 rgb(255 255 255 / 2%) inset;
+}
+
+.medlens-dashboard table thead {
+  background-color: #142238;
+}
+
+.medlens-dashboard table tbody tr:hover {
+  background-color: #16263d;
+}
+
+.medlens-dashboard .prose {
+  color: var(--text-secondary);
+}
+
 /* Custom scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #0c1523;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #344863;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #506984;
 }

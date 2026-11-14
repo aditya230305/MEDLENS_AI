@@ -87,7 +87,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
                   isSelected
                     ? 'border-blue-500 bg-blue-50/50 shadow-md ring-2 ring-blue-500/20'
                     : 'border-slate-200 hover:border-blue-300 hover:bg-slate-50'
-                } ${isProcessing ? 'opacity-50 cursor-not-allowed' : ''}`}
+                } ${isProcessing ? 'cursor-not-allowed' : ''}`}
               >
                 <div className="flex items-start justify-between mb-2">
                   <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${s.badgeColor}`}>
@@ -101,7 +101,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
                   {s.title}
                 </h3>
                 <p className="text-xs text-slate-500 mb-2">Patient: {s.patient}</p>
-                <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed bg-slate-100/60 p-1.5 rounded-md">
+                <p className="sample-report-highlights text-xs line-clamp-2 leading-relaxed p-1.5 rounded-md">
                   {s.highlights}
                 </p>
                 <div className="mt-3 flex items-center gap-1 text-xs font-semibold text-blue-600 group-hover:translate-x-1 transition-transform">
