@@ -158,6 +158,8 @@ Open your browser at: `http://localhost:3000`
 
 ## ☁️ Free Demo Deployment on Render
 
+The current deployment uses Vercel for the frontend and Render for the API.
+
 The root `Dockerfile` builds the React frontend and runs it together with the FastAPI backend as one web service.
 
 1. Push the project to a GitHub repository.
