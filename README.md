@@ -3,6 +3,16 @@
 > **Degree / Course**: B.Tech Major Project (7th Semester)  
 > **Topic**: Intelligent Clinical Report Analysis, OCR, Medical NLP Entity Extraction, RAG Knowledge Grounding, Structured & Plain-Language Generation, and Hallucination Guardrail Validation.  
 
+## Live Demo
+
+[Open MedLens AI](https://medlens-ai-iota.vercel.app/) — frontend hosted on Vercel, with the API hosted on Render.
+
+<p align="center">
+  <a href="https://medlens-ai-iota.vercel.app/">
+    <img src="docs/screenshots/medlens-ai-live.png" alt="Screenshot of the live MedLens AI application" width="480">
+  </a>
+</p>
+
 ---
 
 ## 📌 Abstract / Project Overview
@@ -156,19 +166,16 @@ Open your browser at: `http://localhost:3000`
 
 ---
 
-## ☁️ Free Demo Deployment on Render
+## ☁️ Deployment
 
-The current deployment uses Vercel for the frontend and Render for the API.
+The live deployment uses Vercel for the frontend and Render for the FastAPI backend.
 
-The root `Dockerfile` builds the React frontend and runs it together with the FastAPI backend as one web service.
+1. Deploy the `frontend/` directory to Vercel and set the project Root Directory to `frontend`. The [Vercel rewrite](frontend/vercel.json) forwards `/api/*` requests to the Render backend.
+2. Deploy the repository root to Render as a Docker Web Service using the root `Dockerfile`; leave the Render Root Directory blank.
+3. Set `GEMINI_API_KEY` in the Render service's Environment settings. Do not commit `.env` or put the key in frontend code.
+4. Verify the backend at [`/api/health`](https://medlens-ai-icu1.onrender.com/api/health) and the frontend at the [live demo](https://medlens-ai-iota.vercel.app/).
 
-1. Push the project to a GitHub repository.
-2. In Render, choose **New → Web Service** and connect the repository.
-3. Select **Docker** as the runtime and choose the **Free** instance plan. Keep the repository root as the service root; Render will use the root `Dockerfile`.
-4. Add `GEMINI_API_KEY` under the service's **Environment** settings as a secret. Do not commit `.env` or paste the key into frontend code.
-5. Deploy and open the Render URL. Check `/api/health` and `/docs` to verify the service.
-
-The container includes Tesseract OCR and the PDF renderer used for scanned reports. Render's free service may sleep after inactivity, uses ephemeral storage, and can take time to wake up. Evaluation metrics stored on the local filesystem can be lost when the service restarts. This is a demo deployment, not a production medical service; use synthetic or de-identified reports only.
+Render's free service may sleep after inactivity, uses ephemeral storage, and can take time to wake up. Evaluation metrics stored on the local filesystem can be lost when the service restarts. The root `Dockerfile` also builds and serves both frontend and backend together if you want to run the app as a single Render service. This is a demo deployment, not a production medical service; use synthetic or de-identified reports only.
 
 ---
 
