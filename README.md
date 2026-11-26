@@ -156,6 +156,20 @@ Open your browser at: `http://localhost:3000`
 
 ---
 
+## ☁️ Free Demo Deployment on Render
+
+The root `Dockerfile` builds the React frontend and runs it together with the FastAPI backend as one web service.
+
+1. Push the project to a GitHub repository.
+2. In Render, choose **New → Web Service** and connect the repository.
+3. Select **Docker** as the runtime and choose the **Free** instance plan. Keep the repository root as the service root; Render will use the root `Dockerfile`.
+4. Add `GEMINI_API_KEY` under the service's **Environment** settings as a secret. Do not commit `.env` or paste the key into frontend code.
+5. Deploy and open the Render URL. Check `/api/health` and `/docs` to verify the service.
+
+The container includes Tesseract OCR and the PDF renderer used for scanned reports. Render's free service may sleep after inactivity, uses ephemeral storage, and can take time to wake up. Evaluation metrics stored on the local filesystem can be lost when the service restarts. This is a demo deployment, not a production medical service; use synthetic or de-identified reports only.
+
+---
+
 ## 🎯 How to Demonstrate in your Viva / Evaluation
 
 1. **One-Click Viva Demo**:
